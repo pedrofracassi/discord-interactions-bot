@@ -13,12 +13,7 @@ module.exports = class Hello extends Command {
     res.json({
       type: 4,
       data: {
-        content: "Hello, world!",
-        embeds: [
-          {
-            title: 'Hi'
-          }
-        ]
+        content: "Hello, world!"
       }
     })
   }
