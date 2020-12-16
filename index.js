@@ -18,6 +18,7 @@ const discordAxios = axios.create({
 })
 
 const { glob } = require('glob')
+const Interaction = require('./structures/Interaction')
 
 let commands
 
@@ -36,11 +37,13 @@ glob('commands/*.js', { absolute: true }, (error, matches) => {
   })
 })
 
-app.post('/interactions', verifyKeyMiddleware(process.env.DISCORD_PUBLIC_KEY), (req, res) => {
+app.post('/interactions', verifyKeyMiddleware(process.env.DISCORD_PUBLIC_KEY), async (req, res) => {
+  res.json({ type: 5 })
   const interaction = req.body
+  console.log(interaction.data)
   if (interaction.type !== 2) return
   const command = commands.find(c => c.name === interaction.data.name)
-  if (command) command.run(interaction, res)
+  if (command) command.run(new Interaction(interaction, res))
 })
 
 const port = process.env.PORT || 8080

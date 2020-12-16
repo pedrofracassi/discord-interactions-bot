@@ -1,5 +1,5 @@
 module.exports = class Command {
-  constructor ({ name, description, options }) {
+  constructor ({ name, description, options, responseType }) {
     this.name = name
     this.description = description
     this.options = options

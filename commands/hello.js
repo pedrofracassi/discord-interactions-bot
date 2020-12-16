@@ -9,12 +9,9 @@ module.exports = class Hello extends Command {
     })
   }
 
-  run (interaction, res) {
-    res.json({
-      type: 4,
-      data: {
-        content: "Hello, world!"
-      }
+  run (interaction) {
+    interaction.followUp({
+      content: 'Hello, world!'
     })
   }
 }
